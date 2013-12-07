@@ -94,7 +94,7 @@ my_git_prompt_status() {
 	fi
 
 	if $(command git rev-parse --verify refs/stash >/dev/null 2>&1); then
-		STATUS="$rt_orange*"
+		STATUS="$STATUS $rt_orange*"
 	fi
 
 	echo "$STATUS$rt_orange]"
