@@ -6,7 +6,6 @@
 # Direct Link: https://github.com/elboletaire/oh-my-zsh/blob/master/themes/racotecnic.zsh-theme
 #
 # Created on:		June 19, 2013
-# Last modified on:	June 20, 2012
 
 if [ $UID -eq 0 ]; then NCOLOR="red"; else NCOLOR="green"; fi
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
@@ -43,9 +42,9 @@ my_git_prompt_status() {
 	local count_conflict=$(echo "$INDEX" | grep -c '^U')
 	# working tree counters
 	local count_untracked=$(echo "$INDEX" | grep -c -E '^[\?A][\?A] ')
-	local count_modified_=$(echo "$INDEX" | grep -c -E '^[AD ][MT] ')
-	local count_deleted_=$(echo "$INDEX" | grep -c -E '^[AU ]D')
-	local count_conflict_=$(echo "$INDEX" | grep -c '^[U ]U')
+	local count_modified_=$(echo "$INDEX" | grep -c -E '^[A-Z ][MR] ')
+	local count_deleted_=$(echo "$INDEX" | grep -c -E '^[A-Z ]D ')
+	local count_conflict_=$(echo "$INDEX" | grep -c '^[A-Z ]U ')
 
 	# index
 	if $(echo "$INDEX" | grep '^A' &> /dev/null) || $(echo "$INDEX" | grep '^AM ' &> /dev/null); then
@@ -65,13 +64,13 @@ my_git_prompt_status() {
 	if $(echo "$INDEX" | grep -E '^[\?A][\?A] ' &> /dev/null); then
 		WORKING=" +$count_untracked"
 	fi
-	if $(echo "$INDEX" | grep -E '^[AD ][MT] ' &> /dev/null); then
+	if $(echo "$INDEX" | grep -E '^[A-Z ][MR] ' &> /dev/null); then
 		WORKING="$WORKING ~$count_modified_"
 	fi
-	if $(echo "$INDEX" | grep -E '^[AU ]D ' &> /dev/null); then
+	if $(echo "$INDEX" | grep -E '^[A-Z ]D ' &> /dev/null); then
 		WORKING="$WORKING -$count_deleted_"
 	fi
-	if $(echo "$INDEX" | grep '^[U ]U' &> /dev/null); then
+	if $(echo "$INDEX" | grep '^[A-Z ]U ' &> /dev/null); then
 		WORKING="$WORKING !$count_conflict_"
 	fi
 
@@ -104,8 +103,8 @@ my_git_prompt_status() {
 eval rt_gray='$FG[237]'
 eval rt_orange='$FG[214]'
 eval rt_blue='$FG[075]'
-eval rt_red='$FG[001]'
-eval rt_green='$FG[022]'
+eval rt_red='$FG[088]'
+eval rt_green='$FG[028]'
 eval rt_lightgreen='$FG[002]'
 
 # primary prompt
